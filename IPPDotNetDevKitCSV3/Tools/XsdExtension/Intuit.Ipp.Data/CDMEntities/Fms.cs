@@ -3179,7 +3179,46 @@ namespace Intuit.Ipp.Data {
         VendorCredit,
         
         /// <remarks/>
+        VendorPrepayment,
+        
+        /// <remarks/>
         YTDAdjustment,
+    }
+    
+    /// <remarks/>
+    /// <summary>
+    /// 
+    /// Product: ALL
+    /// Description: Enumeration of transaction
+    /// sub-types.
+    /// 
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Intuit.Ipp.XsdExtension", "1.0.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schema.intuit.com/finance/v3")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schema.intuit.com/finance/v3", IsNullable=false)]
+    public enum TxnSubTypeEnum {
+        
+        /// <remarks/>
+        InvoiceTax,
+        
+        /// <remarks/>
+        InvoiceRetail,
+        
+        /// <remarks/>
+        JournalTaxAdjustment,
+        
+        /// <remarks/>
+        ProjectCostEstimate,
+        
+        /// <remarks/>
+        EmployeeReimbursableExpense,
+        
+        /// <remarks/>
+        EmployeeReimbursableExpensePayment,
+        
+        /// <remarks/>
+        RetainageRelease,
     }
     
     /// <remarks/>
@@ -4999,6 +5038,7 @@ namespace Intuit.Ipp.Data {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryAdjustment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Payment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StatementCharge))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VendorPrepayment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseByVendor))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseOrder))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(VendorCredit))]
@@ -8129,6 +8169,7 @@ namespace Intuit.Ipp.Data {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryAdjustment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Payment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StatementCharge))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VendorPrepayment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseByVendor))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseOrder))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(VendorCredit))]
@@ -8155,6 +8196,10 @@ namespace Intuit.Ipp.Data {
         private System.DateTime txnDateField;
         
         private bool txnDateFieldSpecified;
+        
+        private TxnSubTypeEnum txnSubTypeField;
+        
+        private bool txnSubTypeFieldSpecified;
         
         private ReferenceType departmentRefField;
         
@@ -8276,6 +8321,35 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.txnDateFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: ALL
+        /// Description: Sub-type of the
+        /// transaction. For information purposes only.
+        /// 
+        /// </summary>
+        public TxnSubTypeEnum TxnSubType {
+            get {
+                return this.txnSubTypeField;
+            }
+            set {
+                this.txnSubTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool TxnSubTypeSpecified {
+            get {
+                return this.txnSubTypeFieldSpecified;
+            }
+            set {
+                this.txnSubTypeFieldSpecified = value;
             }
         }
         
@@ -11521,6 +11595,10 @@ namespace Intuit.Ipp.Data {
         
         private bool deferredRevenueFieldSpecified;
         
+        private decimal retainageAmountField;
+        
+        private bool retainageAmountFieldSpecified;
+        
         private IntuitAnyType salesItemLineDetailExField;
         
         /// <remarks/>
@@ -11669,6 +11747,35 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.deferredRevenueFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Retainage amount withheld on this sales line.
+        /// The corresponding open balance is tracked in TxnRetainageDetail.RetainageOpenBalance.
+        /// 
+        /// </summary>
+        public decimal RetainageAmount {
+            get {
+                return this.retainageAmountField;
+            }
+            set {
+                this.retainageAmountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool RetainageAmountSpecified {
+            get {
+                return this.retainageAmountFieldSpecified;
+            }
+            set {
+                this.retainageAmountFieldSpecified = value;
             }
         }
         
@@ -13058,6 +13165,91 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.previousDateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    /// <summary>
+    /// 
+    /// Product: QBO
+    /// Description: Details of retainage on the
+    /// transaction as a whole.
+    /// 
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Intuit.Ipp.XsdExtension", "1.0.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schema.intuit.com/finance/v3")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schema.intuit.com/finance/v3", IsNullable=true)]
+    public partial class TxnRetainageDetail {
+        
+        private decimal retainageAmountField;
+        
+        private bool retainageAmountFieldSpecified;
+        
+        private decimal retainageOpenBalanceField;
+        
+        private bool retainageOpenBalanceFieldSpecified;
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Total retainage amount
+        /// on the transaction.
+        /// 
+        /// </summary>
+        public decimal RetainageAmount {
+            get {
+                return this.retainageAmountField;
+            }
+            set {
+                this.retainageAmountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool RetainageAmountSpecified {
+            get {
+                return this.retainageAmountFieldSpecified;
+            }
+            set {
+                this.retainageAmountFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Outstanding retainage
+        /// balance on the transaction.
+        /// Decreases as retainage is released.
+        /// InputType: ReadOnly
+        /// 
+        /// </summary>
+        public decimal RetainageOpenBalance {
+            get {
+                return this.retainageOpenBalanceField;
+            }
+            set {
+                this.retainageOpenBalanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool RetainageOpenBalanceSpecified {
+            get {
+                return this.retainageOpenBalanceFieldSpecified;
+            }
+            set {
+                this.retainageOpenBalanceFieldSpecified = value;
             }
         }
     }
@@ -15606,6 +15798,10 @@ namespace Intuit.Ipp.Data {
         
         private bool allowOnlinePayPalPaymentFieldSpecified;
         
+        private bool allowOnlineAffirmPaymentField;
+        
+        private bool allowOnlineAffirmPaymentFieldSpecified;
+        
         private ETransactionStatusEnum eInvoiceStatusField;
         
         private bool eInvoiceStatusFieldSpecified;
@@ -15669,6 +15865,8 @@ namespace Intuit.Ipp.Data {
         private SubscriptionPaymentsSettingEnum subscriptionPaymentsSettingField;
         
         private bool subscriptionPaymentsSettingFieldSpecified;
+        
+        private TxnRetainageDetail txnRetainageDetailField;
         
         /// <remarks/>
         /// <summary>
@@ -15845,6 +16043,36 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.allowOnlinePayPalPaymentFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Specifies whether
+        /// customer is allowed to use eInvoicing(online payment -affirm)
+        /// to pay the Invoice
+        /// 
+        /// </summary>
+        public bool AllowOnlineAffirmPayment {
+            get {
+                return this.allowOnlineAffirmPaymentField;
+            }
+            set {
+                this.allowOnlineAffirmPaymentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool AllowOnlineAffirmPaymentSpecified {
+            get {
+                return this.allowOnlineAffirmPaymentFieldSpecified;
+            }
+            set {
+                this.allowOnlineAffirmPaymentFieldSpecified = value;
             }
         }
         
@@ -16329,6 +16557,24 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.subscriptionPaymentsSettingFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Retainage accounting summary for the invoice.
+        /// This is a system-derived accounting entry, not a user-facing
+        /// form line.
+        /// 
+        /// </summary>
+        public TxnRetainageDetail TxnRetainageDetail {
+            get {
+                return this.txnRetainageDetailField;
+            }
+            set {
+                this.txnRetainageDetailField = value;
             }
         }
     }
@@ -20780,6 +21026,222 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.includeInAnnualTPARFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    /// <summary>
+    /// 
+    /// Product: QBO
+    /// Description: An AP transaction representing a prepayment (advance
+    /// payment) made to a vendor that is not yet applied against a Bill.
+    /// This transaction has no lines; it records the vendor, the
+    /// account the payment was drawn from, the payment amount and its
+    /// unapplied balance.
+    /// 
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Intuit.Ipp.XsdExtension", "1.0.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schema.intuit.com/finance/v3")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schema.intuit.com/finance/v3", IsNullable=true)]
+    public partial class VendorPrepayment : Transaction {
+        
+        private ReferenceType vendorRefField;
+        
+        private ReferenceType accountRefField;
+        
+        private string paymentRefNumField;
+        
+        private decimal totalAmtField;
+        
+        private bool totalAmtFieldSpecified;
+        
+        private decimal balanceField;
+        
+        private bool balanceFieldSpecified;
+        
+        private decimal homeBalanceField;
+        
+        private bool homeBalanceFieldSpecified;
+        
+        private PhysicalAddress vendorAddrField;
+        
+        private IntuitAnyType vendorPrepaymentExField;
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Specifies the vendor to whom the prepayment was made.
+        /// Required for the create operation.
+        /// 
+        /// </summary>
+        public ReferenceType VendorRef {
+            get {
+                return this.vendorRefField;
+            }
+            set {
+                this.vendorRefField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: The account that the prepayment was drawn from.
+        /// This is typically a bank account, but may be a credit card or
+        /// other asset/liability account depending on how the prepayment
+        /// was funded.
+        /// 
+        /// </summary>
+        public ReferenceType AccountRef {
+            get {
+                return this.accountRefField;
+            }
+            set {
+                this.accountRefField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: The reference number for the payment (e.g. Check #
+        /// for a check payment).
+        /// 
+        /// </summary>
+        public string PaymentRefNum {
+            get {
+                return this.paymentRefNumField;
+            }
+            set {
+                this.paymentRefNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: The total amount of the prepayment made to the vendor.
+        /// 
+        /// </summary>
+        public decimal TotalAmt {
+            get {
+                return this.totalAmtField;
+            }
+            set {
+                this.totalAmtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool TotalAmtSpecified {
+            get {
+                return this.totalAmtFieldSpecified;
+            }
+            set {
+                this.totalAmtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: The unapplied amount of the prepayment. When fully
+        /// applied against bills, balance will be zero.
+        /// [b]QuickBooks Notes[/b][br /]
+        /// Non QB-writable.
+        /// 
+        /// </summary>
+        public decimal Balance {
+            get {
+                return this.balanceField;
+            }
+            set {
+                this.balanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool BalanceSpecified {
+            get {
+                return this.balanceFieldSpecified;
+            }
+            set {
+                this.balanceFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: The unapplied amount of the prepayment in home
+        /// currency. Available only for companies where multicurrency is
+        /// enabled. When fully applied, home balance will be zero.
+        /// [b]QuickBooks Notes[/b][br /]
+        /// Non QB-writable.
+        /// 
+        /// </summary>
+        public decimal HomeBalance {
+            get {
+                return this.homeBalanceField;
+            }
+            set {
+                this.homeBalanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [JsonIgnore()]
+        public bool HomeBalanceSpecified {
+            get {
+                return this.homeBalanceFieldSpecified;
+            }
+            set {
+                this.homeBalanceFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: QBO
+        /// Description: Vendor Mailing Address.
+        /// 
+        /// </summary>
+        public PhysicalAddress VendorAddr {
+            get {
+                return this.vendorAddrField;
+            }
+            set {
+                this.vendorAddrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// Internal use only: extension place holder for
+        /// VendorPrepayment.
+        /// </summary>
+        public IntuitAnyType VendorPrepaymentEx {
+            get {
+                return this.vendorPrepaymentExField;
+            }
+            set {
+                this.vendorPrepaymentExField = value;
             }
         }
     }
@@ -33522,6 +33984,8 @@ namespace Intuit.Ipp.Data {
         
         private ReferenceType departmentRefField;
         
+        private BudgetCustomExtensions[] customExtensionsField;
+        
         /// <remarks/>
         /// <summary>
         /// 
@@ -33641,6 +34105,130 @@ namespace Intuit.Ipp.Data {
             }
             set {
                 this.departmentRefField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: IES
+        /// Description: Custom extensions for dimension-based budget subdivision.
+        /// Use ExtensionType=DIMENSION with AssociatedValue where Key is the dimension
+        /// definition id and Value is the dimension value id.
+        /// 
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute("CustomExtensions")]
+        public BudgetCustomExtensions[] CustomExtensions {
+            get {
+                return this.customExtensionsField;
+            }
+            set {
+                this.customExtensionsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    /// <summary>
+    /// 
+    /// Product: IES
+    /// Description: Custom extensions for budget detail lines such as dimension subdivision
+    /// 
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Intuit.Ipp.XsdExtension", "1.0.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schema.intuit.com/finance/v3")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schema.intuit.com/finance/v3", IsNullable=true)]
+    public partial class BudgetCustomExtensions {
+        
+        private string extensionTypeField;
+        
+        private BudgetCustomExtensionAssociatedValue associatedValueField;
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: IES
+        /// Description: Holds type of the custom extension eg. DIMENSION
+        /// 
+        /// </summary>
+        public string ExtensionType {
+            get {
+                return this.extensionTypeField;
+            }
+            set {
+                this.extensionTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: IES
+        /// Description: Key/value pair for the extension. For DIMENSION type, Key is the
+        /// dimension definition id and Value is the dimension value id.
+        /// 
+        /// </summary>
+        public BudgetCustomExtensionAssociatedValue AssociatedValue {
+            get {
+                return this.associatedValueField;
+            }
+            set {
+                this.associatedValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    /// <summary>
+    /// 
+    /// Product: IES
+    /// Description: Key/value pair associated with a budget custom extension
+    /// 
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Intuit.Ipp.XsdExtension", "1.0.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schema.intuit.com/finance/v3")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schema.intuit.com/finance/v3", IsNullable=true)]
+    public partial class BudgetCustomExtensionAssociatedValue {
+        
+        private string keyField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: IES
+        /// Description: Dimension definition id for DIMENSION extension type
+        /// 
+        /// </summary>
+        public string Key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        /// <summary>
+        /// 
+        /// Product: IES
+        /// Description: Dimension value id for DIMENSION extension type
+        /// 
+        /// </summary>
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
             }
         }
     }
@@ -35562,6 +36150,9 @@ namespace Intuit.Ipp.Data {
         
         /// <remarks/>
         VendorCredit,
+        
+        /// <remarks/>
+        VendorPrepayment,
         
         /// <remarks/>
         CustomFieldDefinition,
@@ -40093,6 +40684,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("TaxReturn", typeof(TaxReturn))]
         [System.Xml.Serialization.XmlElementAttribute("TaxRate", typeof(TaxRate))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("SalesRep", typeof(SalesRep))]
         [System.Xml.Serialization.XmlElementAttribute("InventorySite", typeof(InventorySite))]
         [System.Xml.Serialization.XmlElementAttribute("Task", typeof(Task))]
@@ -40276,6 +40868,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("UserAlert", typeof(UserAlert))]
         [System.Xml.Serialization.XmlElementAttribute("Vendor", typeof(Vendor))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("VendorType", typeof(VendorType))]
         public object AnyIntuitObject {
             get {
@@ -40482,6 +41075,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("UserAlert", typeof(UserAlert))]
         [System.Xml.Serialization.XmlElementAttribute("Vendor", typeof(Vendor))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("VendorType", typeof(VendorType))]
         public object[] AnyIntuitObjects {
             get {
@@ -40663,6 +41257,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("UserAlert", typeof(UserAlert))]
         [System.Xml.Serialization.XmlElementAttribute("Vendor", typeof(Vendor))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("VendorType", typeof(VendorType))]
         public IntuitEntity AnyIntuitObject {
             get {
@@ -41980,6 +42575,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("UserAlert", typeof(UserAlert))]
         [System.Xml.Serialization.XmlElementAttribute("Vendor", typeof(Vendor))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("VendorType", typeof(VendorType))]
         public object AnyIntuitObject {
             get {
@@ -42087,6 +42683,7 @@ namespace Intuit.Ipp.Data {
         [System.Xml.Serialization.XmlElementAttribute("UserAlert", typeof(UserAlert))]
         [System.Xml.Serialization.XmlElementAttribute("Vendor", typeof(Vendor))]
         [System.Xml.Serialization.XmlElementAttribute("VendorCredit", typeof(VendorCredit))]
+        [System.Xml.Serialization.XmlElementAttribute("VendorPrepayment", typeof(VendorPrepayment))]
         [System.Xml.Serialization.XmlElementAttribute("VendorType", typeof(VendorType))]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
         public object AnyIntuitObject {
@@ -42440,6 +43037,9 @@ namespace Intuit.Ipp.Data {
         
         /// <remarks/>
         VendorCredit,
+        
+        /// <remarks/>
+        VendorPrepayment,
         
         /// <remarks/>
         VendorType,
